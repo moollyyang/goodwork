@@ -3,108 +3,146 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f5f3eb">
+  <meta name="theme-color" content="#fff8ef">
   <title>小育子愉快工作生活館｜服務價目表</title>
   <style>
     :root {
-      --ink: #26342d;
-      --muted: #647168;
-      --paper: #fbfaf6;
-      --cream: #f2efe5;
-      --green: #416b55;
-      --green-dark: #2f5140;
-      --line: #e2e5dc;
-      --white: #ffffff;
-      --gold: #d6a64d;
+      --ink: #34463e;
+      --muted: #7b8278;
+      --paper: #fffaf3;
+      --cream: #fff0d9;
+      --mint: #e8f3e6;
+      --green: #5f9277;
+      --green-dark: #3f725b;
+      --pink: #ffe9e7;
+      --coral: #ed858b;
+      --yellow: #fff0c8;
+      --gold: #e9b64f;
+      --line: #f0e7dc;
+      --white: #fffefd;
     }
     * { box-sizing: border-box; }
     body {
       margin: 0;
-      background: var(--paper);
+      background:
+        radial-gradient(circle at 8% 8%, rgba(255, 219, 203, .34) 0 5px, transparent 6px),
+        radial-gradient(circle at 92% 24%, rgba(204, 229, 199, .4) 0 6px, transparent 7px),
+        var(--paper);
       color: var(--ink);
       font-family: -apple-system, BlinkMacSystemFont, "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
-      line-height: 1.6;
+      line-height: 1.65;
     }
-    .page { width: min(100% - 32px, 1040px); margin: 0 auto; padding: 38px 0 28px; }
+    .page { width: min(100% - 32px, 1040px); margin: 0 auto; padding: 28px 0 24px; }
     .hero {
       position: relative;
       overflow: hidden;
-      padding: clamp(28px, 5vw, 52px);
-      border-radius: 26px;
-      background: var(--cream);
-      border: 1px solid #e8e5d9;
+      padding: clamp(27px, 5vw, 48px);
+      border-radius: 32px;
+      background: linear-gradient(125deg, #edf5df 0%, #f7f3df 56%, #fff0e8 100%);
+      border: 2px solid #fff;
+      box-shadow: 0 7px 0 rgba(222, 210, 189, .25);
     }
-    .hero::after {
-      content: "";
+    .hero::before, .hero::after {
+      content: "✿";
       position: absolute;
-      width: 190px; height: 190px;
-      right: -52px; top: -58px;
-      border-radius: 50%;
-      border: 28px solid rgba(65, 107, 85, .10);
+      color: rgba(237, 133, 139, .48);
+      font-size: 58px;
+      line-height: 1;
       pointer-events: none;
     }
-    .eyebrow { margin: 0 0 8px; color: var(--green); font-size: .82rem; font-weight: 800; letter-spacing: .14em; }
-    h1 { margin: 0; max-width: 700px; font-size: clamp(2rem, 5vw, 3.15rem); line-height: 1.2; letter-spacing: .015em; }
-    .subtitle { margin: 13px 0 0; color: var(--muted); font-size: 1.02rem; }
-    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 16px; margin: 32px 2px 15px; }
-    h2 { margin: 0; font-size: 1.45rem; letter-spacing: .02em; }
-    .section-note { margin: 0; color: var(--muted); font-size: .88rem; }
-    .services { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    .hero::before { right: 24px; top: 12px; transform: rotate(16deg); }
+    .hero::after { right: 100px; bottom: 5px; color: rgba(95, 146, 119, .35); font-size: 42px; }
+    .hero-content { position: relative; z-index: 1; max-width: 740px; }
+    .eyebrow { margin: 0 0 8px; color: var(--green-dark); font-size: .82rem; font-weight: 800; letter-spacing: .1em; }
+    h1 { margin: 0; max-width: 720px; font-size: clamp(2rem, 5vw, 3.1rem); line-height: 1.22; letter-spacing: .015em; color: #315e4b; }
+    .subtitle { margin: 13px 0 0; color: #65796a; font-size: 1.04rem; }
+    .hero-sticker {
+      display: inline-flex; align-items: center; gap: 7px; margin-top: 19px;
+      padding: 7px 14px; border-radius: 999px; background: rgba(255,255,255,.78);
+      color: #6e7e58; font-size: .88rem; font-weight: 700; transform: rotate(-1deg);
+    }
+    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 16px; margin: 31px 3px 15px; }
+    h2 { margin: 0; font-size: 1.45rem; letter-spacing: .02em; color: #426b55; }
+    .section-note { margin: 0; color: var(--muted); font-size: .9rem; }
+    .services { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 13px; }
     .service {
-      display: flex; gap: 15px; align-items: flex-start;
-      min-height: 118px; padding: 19px 20px;
-      background: var(--white); border: 1px solid var(--line); border-radius: 17px;
+      display: flex; gap: 14px; align-items: flex-start;
+      min-height: 118px; padding: 18px 19px;
+      background: var(--white); border: 2px solid #fff; border-radius: 23px;
+      box-shadow: 0 4px 0 rgba(224, 211, 194, .27);
+      transition: transform .18s ease, box-shadow .18s ease;
     }
+    .service:nth-child(4n+1) { background: linear-gradient(135deg, #fff0ef, #fffaf5); }
+    .service:nth-child(4n+2) { background: linear-gradient(135deg, #edf6e9, #fffefa); }
+    .service:nth-child(4n+3) { background: linear-gradient(135deg, #fff4d9, #fffaf0); }
+    .service:nth-child(4n) { background: linear-gradient(135deg, #f8edfa, #fffafc); }
     .number {
-      display: grid; place-items: center; flex: 0 0 36px; height: 36px;
-      border-radius: 12px; background: #edf2ec; color: var(--green-dark);
-      font-size: .86rem; font-weight: 800;
+      display: grid; place-items: center; flex: 0 0 39px; height: 39px;
+      border-radius: 50% 46% 48% 43%; background: var(--coral); color: white;
+      font-size: .9rem; font-weight: 900; box-shadow: 0 3px 0 rgba(201, 105, 115, .16);
+      transform: rotate(-4deg);
     }
+    .service:nth-child(3n+2) .number { background: #79a987; box-shadow: 0 3px 0 rgba(89, 135, 101, .15); transform: rotate(4deg); }
+    .service:nth-child(3n) .number { background: #e9b64f; box-shadow: 0 3px 0 rgba(196, 148, 54, .15); }
     .service-body { min-width: 0; }
-    .service h3 { margin: 2px 0 5px; font-size: 1.04rem; line-height: 1.4; }
+    .service h3 { margin: 2px 0 5px; font-size: 1.04rem; line-height: 1.4; color: #344f42; }
     .price { margin: 0; color: var(--muted); font-size: .94rem; }
-    .price strong { color: var(--green-dark); font-weight: 800; }
+    .price strong { color: #3f725b; font-weight: 850; }
     .promo {
-      margin-top: 28px; padding: clamp(23px, 4vw, 34px);
-      background: var(--green-dark); color: #fff; border-radius: 22px;
+      position: relative; overflow: hidden;
+      margin-top: 29px; padding: clamp(23px, 4vw, 34px);
+      background: linear-gradient(120deg, #dcefd7, #f0f5d9 62%, #fff0d9);
+      border: 2px solid #fff; color: var(--ink); border-radius: 30px;
+      box-shadow: 0 5px 0 rgba(224, 211, 194, .28);
     }
-    .promo .eyebrow { color: #e5c77e; }
-    .promo h2 { font-size: 1.55rem; }
-    .deals { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 17px; }
-    .deal { padding: 17px 18px; border: 1px solid rgba(255,255,255,.19); background: rgba(255,255,255,.07); border-radius: 15px; }
-    .deal-title { margin: 0 0 4px; font-weight: 700; }
-    .deal-copy { margin: 0; color: #e7eee8; font-size: .94rem; }
-    .discount { color: #f0d38e; font-size: 1.28rem; font-weight: 900; white-space: nowrap; }
-    .fineprint { margin: 14px 2px 0; color: #d5e0d8; font-size: .82rem; }
-    footer { padding: 21px 4px 0; text-align: center; color: var(--muted); font-size: .82rem; }
+    .promo::after { content: "♡"; position: absolute; right: 18px; top: 5px; color: rgba(237,133,139,.35); font-size: 74px; transform: rotate(12deg); }
+    .promo .eyebrow { color: #64846a; }
+    .promo h2 { font-size: 1.55rem; color: #38684f; position: relative; z-index: 1; }
+    .deals { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 17px; position: relative; z-index: 1; }
+    .deal { padding: 17px 18px; border: 2px solid rgba(255,255,255,.9); background: rgba(255,255,255,.7); border-radius: 22px; }
+    .deal-title { margin: 0 0 4px; font-weight: 800; }
+    .deal-copy { margin: 0; color: #65776a; font-size: .94rem; }
+    .discount { display: inline-block; color: #d96f78; font-size: 1.35rem; font-weight: 950; white-space: nowrap; }
+    .fineprint { margin: 14px 2px 0; color: #6d7c6d; font-size: .84rem; position: relative; z-index: 1; }
+    footer { padding: 22px 4px 0; text-align: center; color: #7b8278; font-size: .86rem; }
+    footer .heart { color: var(--coral); }
+    @media (hover: hover) {
+      .service:hover { transform: translateY(-2px) rotate(-.2deg); box-shadow: 0 7px 0 rgba(224, 211, 194, .3); }
+    }
     @media (max-width: 650px) {
       .page { width: min(100% - 22px, 540px); padding-top: 12px; }
-      .hero { border-radius: 20px; }
+      .hero { border-radius: 25px; }
+      .hero::before { right: 10px; font-size: 42px; }
+      .hero::after { right: 54px; font-size: 32px; }
       .section-head { display: block; margin-top: 25px; }
       .section-note { margin-top: 4px; }
       .services, .deals { grid-template-columns: 1fr; }
-      .service { min-height: auto; padding: 16px; }
+      .service { min-height: auto; padding: 16px; border-radius: 20px; }
+      .promo { border-radius: 24px; }
     }
     @media print {
       body { background: #fff; }
       .page { width: 100%; padding: 0; }
       .hero, .promo, .service { break-inside: avoid; }
       .services { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .promo { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+      .hero, .promo, .service { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
     }
   </style>
 </head>
 <body>
   <main class="page">
     <header class="hero">
-      <p class="eyebrow">WORK · LIFE · MADE EASIER</p>
-      <h1>小育子愉快工作生活館</h1>
-      <p class="subtitle">讓工作更順手，讓日常更愉快。</p>
+      <div class="hero-content">
+        <p class="eyebrow">🌷 WORK · LIFE · A LITTLE JOY 🌷</p>
+        <h1>小育子愉快工作生活館</h1>
+        <p class="subtitle">讓工作更順手，讓日常更愉快！</p>
+        <span class="hero-sticker">☁️ 小小幫忙，讓上班更輕鬆 ☀️</span>
+      </div>
     </header>
 
     <section aria-labelledby="services-title">
       <div class="section-head">
-        <h2 id="services-title">服務項目與價格</h2>
+        <h2 id="services-title">🌼 服務項目與價格</h2>
         <p class="section-note">簡單方便，依需求選購</p>
       </div>
       <div class="services">
@@ -126,7 +164,7 @@
           <span class="number">03</span>
           <div class="service-body">
             <h3>資料印製</h3>
-            <p class="price"><strong>10 張 8 元</strong>｜<strong>20 張 15 元</strong><br>多買更划算</p>
+            <p class="price"><strong>10 張 8 元</strong>｜<strong>20 張 15 元</strong><br>多買更划算 ♡</p>
           </div>
         </article>
         <article class="service">
@@ -182,22 +220,22 @@
     </section>
 
     <section class="promo" aria-labelledby="promo-title">
-      <p class="eyebrow">A LITTLE EXTRA FOR GOOD COLLEAGUES</p>
+      <p class="eyebrow">💚 A LITTLE THANK-YOU FOR COLLEAGUES 💚</p>
       <h2 id="promo-title">敦親睦鄰・好同事優惠</h2>
       <div class="deals">
         <div class="deal">
-          <p class="deal-title">好同事特別優惠</p>
+          <p class="deal-title">🌷 好同事特別優惠</p>
           <p class="deal-copy">服務價格 <span class="discount">9 折</span></p>
         </div>
         <div class="deal">
-          <p class="deal-title">一次選購 3 項服務</p>
+          <p class="deal-title">🎁 一次選購 3 項服務</p>
           <p class="deal-copy">再享 <span class="discount">9 折</span></p>
         </div>
       </div>
       <p class="fineprint">時價服務依實際需求報價。</p>
     </section>
 
-    <footer>小育子愉快工作生活館｜有需要，歡迎洽詢選購</footer>
+    <footer>小育子愉快工作生活館　<span class="heart">♡</span>　有需要，歡迎洽詢選購！</footer>
   </main>
 </body>
 </html>
