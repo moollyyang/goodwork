@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f3eb">
+  <title>小育子愉快工作生活館｜服務價目表</title>
+  <style>
+    :root {
+      --ink: #26342d;
+      --muted: #647168;
+      --paper: #fbfaf6;
+      --cream: #f2efe5;
+      --green: #416b55;
+      --green-dark: #2f5140;
+      --line: #e2e5dc;
+      --white: #ffffff;
+      --gold: #d6a64d;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+      line-height: 1.6;
+    }
+    .page { width: min(100% - 32px, 1040px); margin: 0 auto; padding: 38px 0 28px; }
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: clamp(28px, 5vw, 52px);
+      border-radius: 26px;
+      background: var(--cream);
+      border: 1px solid #e8e5d9;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 190px; height: 190px;
+      right: -52px; top: -58px;
+      border-radius: 50%;
+      border: 28px solid rgba(65, 107, 85, .10);
+      pointer-events: none;
+    }
+    .eyebrow { margin: 0 0 8px; color: var(--green); font-size: .82rem; font-weight: 800; letter-spacing: .14em; }
+    h1 { margin: 0; max-width: 700px; font-size: clamp(2rem, 5vw, 3.15rem); line-height: 1.2; letter-spacing: .015em; }
+    .subtitle { margin: 13px 0 0; color: var(--muted); font-size: 1.02rem; }
+    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 16px; margin: 32px 2px 15px; }
+    h2 { margin: 0; font-size: 1.45rem; letter-spacing: .02em; }
+    .section-note { margin: 0; color: var(--muted); font-size: .88rem; }
+    .services { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    .service {
+      display: flex; gap: 15px; align-items: flex-start;
+      min-height: 118px; padding: 19px 20px;
+      background: var(--white); border: 1px solid var(--line); border-radius: 17px;
+    }
+    .number {
+      display: grid; place-items: center; flex: 0 0 36px; height: 36px;
+      border-radius: 12px; background: #edf2ec; color: var(--green-dark);
+      font-size: .86rem; font-weight: 800;
+    }
+    .service-body { min-width: 0; }
+    .service h3 { margin: 2px 0 5px; font-size: 1.04rem; line-height: 1.4; }
+    .price { margin: 0; color: var(--muted); font-size: .94rem; }
+    .price strong { color: var(--green-dark); font-weight: 800; }
+    .promo {
+      margin-top: 28px; padding: clamp(23px, 4vw, 34px);
+      background: var(--green-dark); color: #fff; border-radius: 22px;
+    }
+    .promo .eyebrow { color: #e5c77e; }
+    .promo h2 { font-size: 1.55rem; }
+    .deals { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 17px; }
+    .deal { padding: 17px 18px; border: 1px solid rgba(255,255,255,.19); background: rgba(255,255,255,.07); border-radius: 15px; }
+    .deal-title { margin: 0 0 4px; font-weight: 700; }
+    .deal-copy { margin: 0; color: #e7eee8; font-size: .94rem; }
+    .discount { color: #f0d38e; font-size: 1.28rem; font-weight: 900; white-space: nowrap; }
+    .fineprint { margin: 14px 2px 0; color: #d5e0d8; font-size: .82rem; }
+    footer { padding: 21px 4px 0; text-align: center; color: var(--muted); font-size: .82rem; }
+    @media (max-width: 650px) {
+      .page { width: min(100% - 22px, 540px); padding-top: 12px; }
+      .hero { border-radius: 20px; }
+      .section-head { display: block; margin-top: 25px; }
+      .section-note { margin-top: 4px; }
+      .services, .deals { grid-template-columns: 1fr; }
+      .service { min-height: auto; padding: 16px; }
+    }
+    @media print {
+      body { background: #fff; }
+      .page { width: 100%; padding: 0; }
+      .hero, .promo, .service { break-inside: avoid; }
+      .services { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .promo { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <p class="eyebrow">WORK · LIFE · MADE EASIER</p>
+      <h1>小育子愉快工作生活館</h1>
+      <p class="subtitle">讓工作更順手，讓日常更愉快。</p>
+    </header>
+
+    <section aria-labelledby="services-title">
+      <div class="section-head">
+        <h2 id="services-title">服務項目與價格</h2>
+        <p class="section-note">簡單方便，依需求選購</p>
+      </div>
+      <div class="services">
+        <article class="service">
+          <span class="number">01</span>
+          <div class="service-body">
+            <h3>電子憑證用印</h3>
+            <p class="price"><strong>時價</strong>｜依需求報價</p>
+          </div>
+        </article>
+        <article class="service">
+          <span class="number">02</span>
+          <div class="service-body">
+            <h3>打單服務</h3>
+            <p class="price">含費用與簽收｜<strong>時價</strong></p>
+          </div>
+        </article>
+        <article class="service">
+          <span class="number">03</span>
+          <div class="service-body">
+            <h3>資料印製</h3>
+            <p class="price"><strong>10 張 8 元</strong>｜<strong>20 張 15 元</strong><br>多買更划算</p>
+          </div>
+        </article>
+        <article class="service">
+          <span class="number">04</span>
+          <div class="service-body">
+            <h3>垃圾清理</h3>
+            <p class="price"><strong>時價</strong>｜依需求報價</p>
+          </div>
+        </article>
+        <article class="service">
+          <span class="number">05</span>
+          <div class="service-body">
+            <h3>周圍環境整理</h3>
+            <p class="price"><strong>時價</strong>｜依需求報價</p>
+          </div>
+        </article>
+        <article class="service">
+          <span class="number">06</span>
+          <div class="service-body">
+            <h3>空間芳香服務</h3>
+            <p class="price"><strong>時價</strong>｜依需求報價</p>
+          </div>
+        </article>
+        <article class="service">
+          <span class="number">07</span>
+          <div class="service-body">
+            <h3>電話接聽</h3>
+            <p class="price"><strong>時價</strong>｜依需求報價</p>
+          </div>
+        </article>
+        <article class="service">
+          <span class="number">08</span>
+          <div class="service-body">
+            <h3>文具租借</h3>
+            <p class="price">筆類 <strong>8 元</strong>｜剪刀、釘書機 <strong>10 元</strong><br>其他文具 <strong>9 元</strong></p>
+          </div>
+        </article>
+        <article class="service">
+          <span class="number">09</span>
+          <div class="service-body">
+            <h3>廢紙提供</h3>
+            <p class="price"><strong>10 張 8 元</strong>｜<strong>20 張 15 元</strong></p>
+          </div>
+        </article>
+        <article class="service">
+          <span class="number">10</span>
+          <div class="service-body">
+            <h3>顧問諮詢</h3>
+            <p class="price"><strong>每 10 分鐘 80 元</strong></p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="promo" aria-labelledby="promo-title">
+      <p class="eyebrow">A LITTLE EXTRA FOR GOOD COLLEAGUES</p>
+      <h2 id="promo-title">敦親睦鄰・好同事優惠</h2>
+      <div class="deals">
+        <div class="deal">
+          <p class="deal-title">好同事特別優惠</p>
+          <p class="deal-copy">服務價格 <span class="discount">9 折</span></p>
+        </div>
+        <div class="deal">
+          <p class="deal-title">一次選購 3 項服務</p>
+          <p class="deal-copy">再享 <span class="discount">9 折</span></p>
+        </div>
+      </div>
+      <p class="fineprint">時價服務依實際需求報價。</p>
+    </section>
+
+    <footer>小育子愉快工作生活館｜有需要，歡迎洽詢選購</footer>
+  </main>
+</body>
+</html>
