@@ -4,627 +4,178 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#fff8ef">
-  <title>小育子愉快工作生活館｜服務選購與試算</title>
+  <meta name="description" content="小育子愉快工作生活館服務價目表，可勾選服務、試算優惠並整理訂購需求。">
+  <title>小育子愉快工作生活館｜服務價目表與互動選購</title>
   <style>
-    :root {
-      --ink: #34463e;
-      --muted: #7b8278;
-      --paper: #fffaf3;
-      --cream: #fff0d9;
-      --mint: #e8f3e6;
-      --green: #5f9277;
-      --green-dark: #3f725b;
-      --pink: #ffe9e7;
-      --coral: #ed858b;
-      --yellow: #fff0c8;
-      --gold: #e9b64f;
-      --line: #f0e7dc;
-      --white: #fffefd;
-    }
-    * { box-sizing: border-box; }
-
-    body {
-      margin: 0;
-      background:
-        radial-gradient(circle at 8% 8%, rgba(255, 219, 203, .34) 0 5px, transparent 6px),
-        radial-gradient(circle at 92% 24%, rgba(204, 229, 199, .4) 0 6px, transparent 7px),
-        var(--paper);
-      color: var(--ink);
-      font-family: -apple-system, BlinkMacSystemFont, "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
-      line-height: 1.65;
-      padding-bottom: 100px; /* 預留底部懸浮列空間 */
-    }
-    .page { width: min(100% - 32px, 1040px); margin: 0 auto; padding: 28px 0 24px; }
-    .hero {
-      position: relative;
-      overflow: hidden;
-      padding: clamp(27px, 5vw, 48px);
-      border-radius: 32px;
-      background: linear-gradient(125deg, #edf5df 0%, #f7f3df 56%, #fff0e8 100%);
-      border: 2px solid #fff;
-      box-shadow: 0 7px 0 rgba(222, 210, 189, .25);
-    }
-    .hero::before, .hero::after {
-      content: "✿";
-      position: absolute;
-      color: rgba(237, 133, 139, .48);
-      font-size: 58px;
-      line-height: 1;
-      pointer-events: none;
-    }
-    .hero::before { right: 24px; top: 12px; transform: rotate(16deg); }
-    .hero::after { right: 100px; bottom: 5px; color: rgba(95, 146, 119, .35); font-size: 42px; }
-    .hero-content { position: relative; z-index: 1; max-width: 740px; }
-    .eyebrow { margin: 0 0 8px; color: var(--green-dark); font-size: .82rem; font-weight: 800; letter-spacing: .1em; }
-    h1 { margin: 0; max-width: 720px; font-size: clamp(2rem, 5vw, 3.1rem); line-height: 1.22; letter-spacing: .015em; color: #315e4b; }
-    .subtitle { margin: 13px 0 0; color: #65796a; font-size: 1.04rem; }
-    .hero-sticker {
-      display: inline-flex; align-items: center; gap: 7px; margin-top: 19px;
-      padding: 7px 14px; border-radius: 999px; background: rgba(255,255,255,.78);
-      color: #6e7e58; font-size: .88rem; font-weight: 700; transform: rotate(-1deg);
-    }
-    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 16px; margin: 31px 3px 15px; }
-    h2 { margin: 0; font-size: 1.45rem; letter-spacing: .02em; color: #426b55; }
-    .section-note { margin: 0; color: var(--muted); font-size: .9rem; }
-    
-    .services { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 13px; }
-    .service {
-      display: flex; gap: 14px; align-items: flex-start;
-      padding: 18px 19px;
-      background: var(--white); border: 2px solid #fff; border-radius: 23px;
-      box-shadow: 0 4px 0 rgba(224, 211, 194, .27);
-      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
-      cursor: pointer;
-      position: relative;
-    }
-    .service.selected {
-      border-color: var(--green);
-      background: linear-gradient(135deg, #f0f8ed, #e3f2e0) !important;
-      box-shadow: 0 5px 0 rgba(95, 146, 119, .3);
-    }
-    .service:nth-child(4n+1) { background: linear-gradient(135deg, #fff0ef, #fffaf5); }
-    .service:nth-child(4n+2) { background: linear-gradient(135deg, #edf6e9, #fffefa); }
-    .service:nth-child(4n+3) { background: linear-gradient(135deg, #fff4d9, #fffaf0); }
-    .service:nth-child(4n) { background: linear-gradient(135deg, #f8edfa, #fffafc); }
-
-    .number {
-      display: grid; place-items: center; flex: 0 0 39px; height: 39px;
-      border-radius: 50% 46% 48% 43%; background: var(--coral); color: white;
-      font-size: .9rem; font-weight: 900; box-shadow: 0 3px 0 rgba(201, 105, 115, .16);
-      transform: rotate(-4deg);
-    }
-    .service:nth-child(3n+2) .number { background: #79a987; box-shadow: 0 3px 0 rgba(89, 135, 101, .15); transform: rotate(4deg); }
-    .service:nth-child(3n) .number { background: #e9b64f; box-shadow: 0 3px 0 rgba(196, 148, 54, .15); }
-    
-    .service-body { min-width: 0; flex-grow: 1; }
-    .service h3 { margin: 2px 0 3px; font-size: 1.04rem; line-height: 1.4; color: #344f42; }
-    .price { margin: 0 0 8px; color: var(--muted); font-size: .94rem; }
-    .price strong { color: #3f725b; font-weight: 850; }
-    
-    .service-action {
-      display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 6px;
-    }
-    .qty-control {
-      display: inline-flex; align-items: center; background: rgba(255,255,255,0.8);
-      border: 1px solid var(--line); border-radius: 8px; overflow: hidden;
-    }
-    .qty-btn {
-      background: none; border: none; padding: 2px 8px; cursor: pointer; font-weight: bold; color: var(--green-dark);
-    }
-    .qty-btn:hover { background: var(--cream); }
-    .qty-input {
-      width: 34px; text-align: center; border: none; background: transparent; font-size: 0.9rem; font-weight: bold; color: var(--ink);
-    }
-    .select-tag {
-      font-size: 0.8rem; font-weight: 700; padding: 3px 10px; border-radius: 12px; background: #eee; color: #666;
-    }
-    .service.selected .select-tag { background: var(--green); color: white; }
-
-    /* Promo section */
-    .promo {
-      position: relative; overflow: hidden;
-      margin-top: 29px; padding: clamp(23px, 4vw, 34px);
-      background: linear-gradient(120deg, #dcefd7, #f0f5d9 62%, #fff0d9);
-      border: 2px solid #fff; color: var(--ink); border-radius: 30px;
-      box-shadow: 0 5px 0 rgba(224, 211, 194, .28);
-    }
-    .promo::after { content: "♡"; position: absolute; right: 18px; top: 5px; color: rgba(237,133,139,.35); font-size: 74px; transform: rotate(12deg); }
-    .promo .eyebrow { color: #64846a; }
-    .promo h2 { font-size: 1.55rem; color: #38684f; position: relative; z-index: 1; }
-    .deals { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 17px; position: relative; z-index: 1; }
-    .deal { padding: 17px 18px; border: 2px solid rgba(255,255,255,.9); background: rgba(255,255,255,.7); border-radius: 22px; display: flex; align-items: center; justify-content: space-between; }
-    .deal-title { margin: 0 0 4px; font-weight: 800; }
-    .deal-copy { margin: 0; color: #65776a; font-size: .94rem; }
-    .discount { display: inline-block; color: #d96f78; font-size: 1.35rem; font-weight: 950; white-space: nowrap; }
-
-    /* Floating Cart Bar */
-    .cart-bar {
-      position: fixed; bottom: 0; left: 0; right: 0; background: rgba(255, 253, 253, 0.95);
-      backdrop-filter: blur(10px); border-top: 2px solid var(--cream);
-      box-shadow: 0 -6px 20px rgba(52, 70, 62, 0.12); padding: 14px 20px;
-      display: flex; align-items: center; justify-content: space-between; z-index: 100;
-      transform: translateY(100%); transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-    .cart-bar.active { transform: translateY(0); }
-    .cart-info { font-size: 0.95rem; font-weight: 700; color: var(--ink); }
-    .cart-total { color: var(--green-dark); font-size: 1.25rem; font-weight: 900; margin-left: 8px; }
-    .checkout-btn {
-      background: linear-gradient(135deg, var(--green), var(--green-dark));
-      color: white; border: none; padding: 10px 24px; border-radius: 999px;
-      font-size: 1rem; font-weight: 800; cursor: pointer; box-shadow: 0 4px 0 rgba(63, 114, 91, 0.3);
-      transition: transform 0.1s ease;
-    }
-    .checkout-btn:hover { transform: translateY(-1px); }
-    .checkout-btn:active { transform: translateY(2px); box-shadow: none; }
-
-    /* Modal dialog */
-    .modal-backdrop {
-      position: fixed; inset: 0; background: rgba(52, 70, 62, 0.5); backdrop-filter: blur(4px);
-      display: grid; place-items: center; z-index: 200; opacity: 0; pointer-events: none; transition: opacity 0.2s ease;
-    }
-    .modal-backdrop.open { opacity: 1; pointer-events: auto; }
-    .modal {
-      background: var(--paper); width: min(92% - 20px, 520px); border-radius: 28px;
-      border: 3px solid white; padding: 26px; box-shadow: 0 12px 35px rgba(52, 70, 62, 0.2);
-      max-height: 90vh; overflow-y: auto; transform: scale(0.95); transition: transform 0.2s ease;
-    }
-    .modal-backdrop.open .modal { transform: scale(1); }
-    .modal h3 { margin-top: 0; color: var(--green-dark); font-size: 1.3rem; }
-    .summary-list { margin: 15px 0; padding: 0; list-style: none; max-height: 200px; overflow-y: auto; border-top: 1px dashed var(--line); border-bottom: 1px dashed var(--line); padding: 10px 0; }
-    .summary-item { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.95rem; }
-    .form-group { margin-bottom: 12px; }
-    .form-group label { display: block; font-size: 0.88rem; font-weight: 700; margin-bottom: 4px; color: var(--green-dark); }
-    .form-group input, .form-group textarea {
-      width: 100%; padding: 10px 12px; border: 2px solid var(--line); border-radius: 12px; background: white; font-size: 0.95rem; color: var(--ink);
-    }
-    .modal-actions { display: flex; gap: 10px; margin-top: 20px; }
-    .btn-secondary { background: var(--line); color: var(--ink); border: none; padding: 10px 18px; border-radius: 999px; font-weight: 700; cursor: pointer; flex: 1; }
-    .btn-primary { background: var(--green-dark); color: white; border: none; padding: 10px 18px; border-radius: 999px; font-weight: 700; cursor: pointer; flex: 2; box-shadow: 0 3px 0 rgba(63,114,91,0.3); }
-
-    footer { padding: 22px 4px 20px; text-align: center; color: #7b8278; font-size: .86rem; }
-    footer .heart { color: var(--coral); }
-
-    @media (max-width: 650px) {
-      .page { width: min(100% - 22px, 540px); padding-top: 12px; }
-      .services, .deals { grid-template-columns: 1fr; }
-      .service { padding: 16px; border-radius: 20px; }
-    }
+    :root{--ink:#34463e;--muted:#778178;--paper:#fffaf3;--mint:#e8f3e6;--green:#5f9277;--deep:#3f725b;--pink:#ffe9e7;--coral:#ed858b;--yellow:#fff0c8;--gold:#e9b64f;--purple:#f8edfa;--line:#f0e7dc;--white:#fffefd}
+    *{box-sizing:border-box}
+    body{margin:0;background:radial-gradient(circle at 8% 8%,rgba(255,219,203,.34) 0 5px,transparent 6px),radial-gradient(circle at 92% 24%,rgba(204,229,199,.4) 0 6px,transparent 7px),var(--paper);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;line-height:1.65}
+    button,input,select,textarea{font:inherit}
+    .page{width:min(100% - 28px,1040px);margin:auto;padding:24px 0 28px}
+    .hero{position:relative;overflow:hidden;padding:clamp(26px,5vw,48px);border-radius:32px;background:linear-gradient(125deg,#edf5df 0%,#f7f3df 56%,#fff0e8 100%);border:2px solid #fff;box-shadow:0 7px 0 rgba(222,210,189,.25)}
+    .hero:before,.hero:after{content:"✿";position:absolute;color:rgba(237,133,139,.45);font-size:58px;line-height:1;pointer-events:none}.hero:before{right:24px;top:12px;transform:rotate(16deg)}.hero:after{right:100px;bottom:5px;color:rgba(95,146,119,.35);font-size:42px}
+    .hero-content{position:relative;z-index:1;max-width:740px}.eyebrow{margin:0 0 8px;color:var(--deep);font-size:.82rem;font-weight:850;letter-spacing:.08em}
+    h1{margin:0;max-width:720px;font-size:clamp(2rem,5vw,3.1rem);line-height:1.22;letter-spacing:.015em;color:#315e4b}.subtitle{margin:13px 0 0;color:#65796a;font-size:1.04rem}
+    .hero-sticker{display:inline-flex;align-items:center;gap:7px;margin-top:18px;padding:7px 14px;border-radius:999px;background:rgba(255,255,255,.8);color:#6e7e58;font-size:.88rem;font-weight:750;transform:rotate(-1deg)}
+    .section-head{display:flex;align-items:end;justify-content:space-between;gap:16px;margin:31px 3px 15px}h2{margin:0;font-size:1.45rem;letter-spacing:.02em;color:#426b55}.section-note{margin:0;color:var(--muted);font-size:.9rem}
+    .services{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+    .service{display:flex;gap:13px;align-items:flex-start;min-height:150px;padding:17px;border:2px solid #fff;border-radius:23px;box-shadow:0 4px 0 rgba(224,211,194,.25);transition:transform .18s ease,box-shadow .18s ease}
+    .service:nth-child(4n+1){background:linear-gradient(135deg,#fff0ef,#fffaf5)}.service:nth-child(4n+2){background:linear-gradient(135deg,#edf6e9,#fffefa)}.service:nth-child(4n+3){background:linear-gradient(135deg,#fff4d9,#fffaf0)}.service:nth-child(4n){background:linear-gradient(135deg,#f8edfa,#fffafc)}
+    .service.selected{border-color:#92bd9c;box-shadow:0 4px 0 rgba(95,146,119,.2),inset 0 0 0 1px rgba(95,146,119,.12)}
+    .number{display:grid;place-items:center;flex:0 0 39px;height:39px;border-radius:50% 46% 48% 43%;background:var(--coral);color:#fff;font-size:.9rem;font-weight:900;box-shadow:0 3px 0 rgba(201,105,115,.16);transform:rotate(-4deg)}
+    .service:nth-child(3n+2) .number{background:#79a987;box-shadow:0 3px 0 rgba(89,135,101,.15);transform:rotate(4deg)}.service:nth-child(3n) .number{background:#e9b64f;box-shadow:0 3px 0 rgba(196,148,54,.15)}
+    .service-body{min-width:0;flex:1}.service h3{margin:2px 0 4px;font-size:1.04rem;line-height:1.4;color:#344f42}.price{margin:0;color:var(--muted);font-size:.92rem}.price strong{color:var(--deep);font-weight:850}.description{margin:4px 0 0;color:#718077;font-size:.84rem}
+    .controls{display:flex;align-items:center;flex-wrap:wrap;gap:8px 12px;margin-top:11px}.choose{display:inline-flex;align-items:center;gap:6px;color:var(--deep);font-size:.9rem;font-weight:800;cursor:pointer}.choose input{width:18px;height:18px;accent-color:var(--green)}
+    .qty-wrap,.option-wrap{display:inline-flex;align-items:center;gap:6px;color:#68776c;font-size:.85rem}.qty{width:64px;padding:5px 7px;border:1px solid #dce6d8;border-radius:10px;background:#fffefa;color:var(--ink)}.option{max-width:100%;padding:6px 8px;border:1px solid #dce6d8;border-radius:10px;background:#fffefa;color:var(--deep);font-size:.86rem}
+    .neighbor{display:flex;align-items:flex-start;gap:6px;margin-top:8px;padding:7px 9px;border-radius:12px;background:rgba(255,255,255,.64);color:#617768;font-size:.82rem}.neighbor input{accent-color:var(--green);margin-top:4px}
+    .promo{position:relative;overflow:hidden;margin-top:28px;padding:clamp(22px,4vw,32px);background:linear-gradient(120deg,#dcefd7,#f0f5d9 62%,#fff0d9);border:2px solid #fff;border-radius:30px;box-shadow:0 5px 0 rgba(224,211,194,.25)}.promo:after{content:"♡";position:absolute;right:18px;top:5px;color:rgba(237,133,139,.35);font-size:74px;transform:rotate(12deg)}.promo .eyebrow{color:#64846a}.promo h2{font-size:1.55rem;color:#38684f;position:relative;z-index:1}.deals{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:17px;position:relative;z-index:1}.deal{padding:16px 18px;border:2px solid rgba(255,255,255,.9);background:rgba(255,255,255,.7);border-radius:22px}.deal-title{margin:0 0 4px;font-weight:850}.deal-copy{margin:0;color:#65776a;font-size:.94rem}.discount{display:inline-block;color:#d96f78;font-size:1.35rem;font-weight:950;white-space:nowrap}.fineprint{margin:13px 2px 0;color:#6d7c6d;font-size:.83rem;position:relative;z-index:1}
+    .order-panel{margin-top:28px;padding:clamp(22px,4vw,32px);border:2px solid #fff;border-radius:28px;background:linear-gradient(135deg,#fff0e8,#f0f6e6);box-shadow:0 5px 0 rgba(224,211,194,.25)}.order-panel h2{margin-bottom:5px}.order-intro{margin:0 0 17px;color:#728075}.order-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.field{display:flex;flex-direction:column;gap:5px;color:#52695a;font-size:.9rem;font-weight:750}.field input,.field textarea{width:100%;border:1px solid #e3e7d9;border-radius:13px;background:rgba(255,255,255,.9);padding:11px 12px;color:var(--ink);min-width:0}.field textarea{min-height:90px;resize:vertical}.field.full{grid-column:1/-1}
+    .cart-summary{margin-top:17px;padding:17px;background:rgba(255,255,255,.8);border-radius:19px}.cart-summary h3{margin:0 0 9px;color:#426b55}.cart-list{margin:0;padding-left:21px;color:#637568}.cart-list li{margin:3px 0}.summary-row{display:flex;justify-content:space-between;gap:14px;padding-top:9px;margin-top:9px;border-top:1px dashed #d8dfd2;color:#637568}.summary-row strong{color:#426b55}.summary-row.total{align-items:baseline;font-weight:850;color:var(--ink)}.summary-row.total strong{font-size:1.5rem;color:#d96f78}.summary-note{margin:11px 0 0;color:#778178;font-size:.83rem}.order-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}.button{border:0;border-radius:999px;padding:11px 18px;font-weight:850;cursor:pointer;transition:transform .15s ease}.button:active{transform:translateY(1px)}.primary{background:#5f9277;color:#fff;box-shadow:0 4px 0 #46765d}.secondary{background:#fff;color:#4f725d;border:1px solid #dce7d8}.status{min-height:1.5em;margin:10px 0 0;color:#3f725b;font-weight:750}.legal-note{margin:10px 0 0;color:#7b8278;font-size:.82rem}footer{padding:22px 4px 0;text-align:center;color:#7b8278;font-size:.86rem}footer .heart{color:var(--coral)}
+    @media(hover:hover){.service:hover{transform:translateY(-2px);box-shadow:0 7px 0 rgba(224,211,194,.29)}}
+    @media(max-width:650px){.page{width:min(100% - 20px,540px);padding-top:12px}.hero{border-radius:25px}.hero:before{right:10px;font-size:42px}.hero:after{right:54px;font-size:32px}.section-head{display:block;margin-top:25px}.section-note{margin-top:4px}.services,.deals,.order-grid{grid-template-columns:1fr}.service{min-height:auto;padding:15px;border-radius:20px}.promo,.order-panel{border-radius:24px}.field.full{grid-column:auto}.service h3{font-size:1rem}.qty{width:58px}}
+    @media print{body{background:#fff}.page{width:100%;padding:0}.hero,.promo,.service,.order-panel{break-inside:avoid;print-color-adjust:exact;-webkit-print-color-adjust:exact}.services{grid-template-columns:repeat(2,minmax(0,1fr))}.order-actions{display:none}}
   </style>
 </head>
 <body>
-  <main class="page">
-    <header class="hero">
-      <div class="hero-content">
-        <p class="eyebrow">🌷 WORK · LIFE · A LITTLE JOY 🌷</p>
-        <h1>小育子愉快工作生活館</h1>
-        <p class="subtitle">讓工作更順手，讓日常更愉快！點擊下方服務即可直接加入選購清單～</p>
-        <span class="hero-sticker">☁️ 點選項目即能自動計算金額 ☀️</span>
-      </div>
-    </header>
-
-    <section aria-labelledby="services-title">
-      <div class="section-head">
-        <h2 id="services-title">🌼 服務項目與價格</h2>
-        <p class="section-note">點擊卡片即可輕鬆選購</p>
-      </div>
-      
-      <div class="services">
-        <!-- 01 -->
-        <article class="service" data-id="1" data-name="電子憑證用印" data-type="market" data-price="0">
-          <span class="number">01</span>
-          <div class="service-body">
-            <h3>電子憑證用印</h3>
-            <p class="price"><strong>時價</strong>｜依需求報價（計入預約）</p>
-            <div class="service-action" onclick="event.stopPropagation()">
-              <span class="select-tag">點擊選購</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- 02 -->
-        <article class="service" data-id="2" data-name="打單服務" data-type="market" data-price="0">
-          <span class="number">02</span>
-          <div class="service-body">
-            <h3>打單服務</h3>
-            <p class="price">含費用與簽收｜<strong>時價</strong></p>
-            <div class="service-action" onclick="event.stopPropagation()">
-              <span class="select-tag">點擊選購</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- 03 (具備數量單位) -->
-        <article class="service" data-id="3" data-name="資料印製" data-type="unit" data-unit-price="0.8" data-unit-name="張">
-          <span class="number">03</span>
-          <div class="service-body">
-            <h3>資料印製</h3>
-            <p class="price"><strong>每張 0.8 元</strong>（可自訂張數）</p>
-            <div class="service-action" onclick="event.stopPropagation()">
-              <div class="qty-control">
-                <button class="qty-btn" onclick="updateQty(3, -1)">-</button>
-                <input type="number" class="qty-input" id="qty-3" value="0" min="0" onchange="setQty(3, this.value)">
-                <button class="qty-btn" onclick="updateQty(3, 1)">+</button>
-              </div>
-              <span class="select-tag" id="tag-3">未選購</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- 04 -->
-        <article class="service" data-id="4" data-name="垃圾清理" data-type="market" data-price="0">
-          <span class="number">04</span>
-          <div class="service-body">
-            <h3>垃圾清理</h3>
-            <p class="price"><strong>時價</strong>｜依需求報價</p>
-            <div class="service-action" onclick="event.stopPropagation()">
-              <span class="select-tag">點擊選購</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- 05 -->
-        <article class="service" data-id="5" data-name="周圍環境整理" data-type="market" data-price="0">
-          <span class="number">05</span>
-          <div class="service-body">
-            <h3>周圍環境整理</h3>
-            <p class="price"><strong>時價</strong>｜依需求報價</p>
-            <div class="service-action" onclick="event.stopPropagation()">
-              <span class="select-tag">點擊選購</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- 06 -->
-        <article class="service" data-id="6" data-name="空間芳香服務" data-type="market" data-price="0">
-          <span class="number">06</span>
-          <div class="service-body">
-            <h3>空間芳香服務</h3>
-            <p class="price"><strong>時價</strong>｜依需求報價</p>
-            <div class="service-action" onclick="event.stopPropagation()">
-              <span class="select-tag">點擊選購</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- 07 -->
-        <article class="service" data-id="7" data-name="電話接聽" data-type="market" data-price="0">
-          <span class="number">07</span>
-          <div class="service-body">
-            <h3>電話接聽</h3>
-            <p class="price"><strong>時價</strong>｜依需求報價</p>
-            <div class="service-action" onclick="event.stopPropagation()">
-              <span class="select-tag">點擊選購</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- 08 -->
-        <article class="service" data-id="8" data-name="文具租借(綜合)" data-type="fixed" data-price="9">
-          <span class="number">08</span>
-          <div class="service-body">
-            <h3>文具租借</h3>
-            <p class="price">筆類 8元｜剪刀/釘書機 10元｜其他 9元</p>
-            <div class="service-action" onclick="event.stopPropagation()">
-              <span class="select-tag">點擊選購 ($9)</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- 09 -->
-        <article class="service" data-id="9" data-name="廢紙提供" data-type="unit" data-unit-price="0.8" data-unit-name="張">
-          <span class="number">09</span>
-          <div class="service-body">
-            <h3>廢紙提供</h3>
-            <p class="price"><strong>每張 0.8 元</strong>（可自訂張數）</p>
-            <div class="service-action" onclick="event.stopPropagation()">
-              <div class="qty-control">
-                <button class="qty-btn" onclick="updateQty(9, -1)">-</button>
-                <input type="number" class="qty-input" id="qty-9" value="0" min="0" onchange="setQty(9, this.value)">
-                <button class="qty-btn" onclick="updateQty(9, 1)">+</button>
-              </div>
-              <span class="select-tag" id="tag-9">未選購</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- 10 -->
-        <article class="service" data-id="10" data-name="顧問諮詢 (每10分鐘)" data-type="unit" data-unit-price="8" data-unit-name="10分鐘">
-          <span class="number">10</span>
-          <div class="service-body">
-            <h3>顧問諮詢</h3>
-            <p class="price"><strong>每 10 分鐘 80 元</strong></p>
-            <div class="service-action" onclick="event.stopPropagation()">
-              <div class="qty-control">
-                <button class="qty-btn" onclick="updateQty(10, -1)">-</button>
-                <input type="number" class="qty-input" id="qty-10" value="份數" style="display:none">
-                <!-- 簡化為點擊數量計次 -->
-                <span id="qty-display-10" style="font-weight:bold; padding:0 8px;">0 份</span>
-                <button class="qty-btn" onclick="updateQty(10, 1)">+</button>
-              </div>
-              <span class="select-tag" id="tag-10">未選購</span>
-            </div>
-          </div>
-        </article>
-
-      </div>
-    </section>
-
-    <!-- 優惠區塊改為可互動勾選 -->
-    <section class="promo" aria-labelledby="promo-title">
-      <p class="eyebrow">💚 A LITTLE THANK-YOU FOR COLLEAGUES 💚</p>
-      <h2 id="promo-title">敦親睦鄰・好同事優惠設定</h2>
-      <div class="deals">
-        <div class="deal" style="cursor:pointer;" onclick="toggleColleagueDiscount()">
-          <div>
-            <p class="deal-title">🌷 好同事特別優惠</p>
-            <p class="deal-copy">享有整筆服務 <span class="discount">9 折</span></p>
-          </div>
-          <div>
-            <input type="checkbox" id="colleagueCheck" style="width: 22px; height: 22px; accent-color: var(--green);" onchange="updateCart()">
-          </div>
-        </div>
-        <div class="deal">
-          <div>
-            <p class="deal-title">🎁 一次選購 3 項以上服務</p>
-            <p class="deal-copy">系統自動再享 <span class="discount">9 折</span></p>
-          </div>
-          <div>
-            <span id="autoDiscountBadge" style="font-size: 0.85rem; font-weight: bold; color: var(--muted);">未達條件</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <footer>小育子愉快工作生活館 <span class="heart">♡</span> 有需要，歡迎隨時點選預約！</footer>
-  </main>
-
-  <!-- 底部懸浮結帳列 -->
-  <div class="cart-bar" id="cartBar">
-    <div class="cart-info">
-      已選 <span id="cartCount" style="color:var(--coral); font-size:1.2rem;">0</span> 項服務
-      <span style="margin-left: 12px;">預估總金額：</span>
-      <span class="cart-total" id="cartTotal">NT$ 0</span>
+<main class="page">
+  <header class="hero">
+    <div class="hero-content">
+      <p class="eyebrow">🌷 WORK · LIFE · A LITTLE JOY 🌷</p>
+      <h1>小育子愉快工作生活館</h1>
+      <p class="subtitle">讓工作更順手，讓日常更愉快！</p>
+      <span class="hero-sticker">☁️ 小小幫忙，讓上班更輕鬆 ☀️</span>
     </div>
-    <button class="checkout-btn" onclick="openCheckoutModal()">查看明細與送出 🛒</button>
-  </div>
+  </header>
 
-  <!-- 結帳填寫表單 Modal -->
-  <div class="modal-backdrop" id="checkoutModal">
-    <div class="modal">
-      <h3>📋 您的服務選購與預約明細</h3>
-      <p style="font-size: 0.88rem; color: var(--muted); margin-top:0;">請確認以下選購項目，並填寫您的聯絡資訊以完成預約。</p>
-      
-      <ul class="summary-list" id="summaryList">
-        <!-- JS 動態填入 -->
-      </ul>
-
-      <div style="text-align: right; font-weight: bold; font-size: 1.1rem; margin-bottom: 15px; color: var(--green-dark);">
-        總計金額：<span id="modalTotal">NT$ 0</span>
-      </div>
-
-      <div class="form-group">
-        <label>您的稱呼 / 部門分機 *</label>
-        <input type="text" id="userName" placeholder="例如：行銷部 小美 (分機 888)">
-      </div>
-      <div class="form-group">
-        <label>備註 / 特殊需求</label>
-        <textarea id="userNote" rows="2" placeholder="例如：請於明天下午三點前完成印製..."></textarea>
-      </div>
-
-      <div class="modal-actions">
-        <button class="btn-secondary" onclick="closeCheckoutModal()">返回修改</button>
-        <button class="btn-primary" onclick="submitOrder()">一鍵複製訂單傳送 ✨</button>
-      </div>
+  <section aria-labelledby="services-title">
+    <div class="section-head"><h2 id="services-title">🌼 服務項目與價格</h2><p class="section-note">勾選服務，馬上試算優惠</p></div>
+    <div class="services">
+      <article class="service" data-id="1" data-name="電子憑證用印" data-price="5" data-unit="張">
+        <span class="number">01</span><div class="service-body"><h3>電子憑證用印</h3><p class="price"><strong>每張 5 元</strong></p><p class="description">依用印張數計費</p>
+          <div class="controls"><label class="choose"><input class="service-check" type="checkbox"> 加入選購</label><label class="qty-wrap">張數 <input class="qty" type="number" min="1" step="1" value="1" inputmode="numeric"></label></div>
+        </div>
+      </article>
+      <article class="service" data-id="2" data-name="打單服務" data-price="100" data-unit="單">
+        <span class="number">02</span><div class="service-body"><h3>打單服務</h3><p class="price">含費用與簽收｜<strong>每張單 100 元</strong></p>
+          <div class="controls"><label class="choose"><input class="service-check" type="checkbox"> 加入選購</label><label class="qty-wrap">單數 <input class="qty" type="number" min="1" step="1" value="1" inputmode="numeric"></label></div>
+          <label class="neighbor"><input class="neighbor-free" type="checkbox"><span>我坐在隔壁：此服務免費 ♡</span></label>
+        </div>
+      </article>
+      <article class="service" data-id="3" data-name="資料印製" data-price="10" data-unit="份">
+        <span class="number">03</span><div class="service-body"><h3>資料印製</h3><p class="price"><strong>10 張 10 元</strong>｜<strong>20 張 15 元</strong></p>
+          <div class="controls"><label class="choose"><input class="service-check" type="checkbox"> 加入選購</label><label class="option-wrap">規格 <select class="option"><option value="10" data-label="10 張" data-sheets="10">10 張｜10 元</option><option value="15" data-label="20 張" data-sheets="20">20 張｜15 元</option></select></label><label class="qty-wrap">份數 <input class="qty" type="number" min="1" step="1" value="1" inputmode="numeric"></label></div>
+        </div>
+      </article>
+      <article class="service" data-id="4" data-name="垃圾清理" data-price="100" data-unit="次">
+        <span class="number">04</span><div class="service-body"><h3>垃圾清理</h3><p class="price"><strong>每次 100 元</strong></p><div class="controls"><label class="choose"><input class="service-check" type="checkbox"> 加入選購</label><label class="qty-wrap">次數 <input class="qty" type="number" min="1" step="1" value="1" inputmode="numeric"></label></div></div>
+      </article>
+      <article class="service" data-id="5" data-name="周圍環境整潔" data-price="50" data-unit="次">
+        <span class="number">05</span><div class="service-body"><h3>周圍環境整潔</h3><p class="price"><strong>每次 50 元</strong></p><div class="controls"><label class="choose"><input class="service-check" type="checkbox"> 加入選購</label><label class="qty-wrap">次數 <input class="qty" type="number" min="1" step="1" value="1" inputmode="numeric"></label></div></div>
+      </article>
+      <article class="service" data-id="6" data-name="周圍空氣芬芳" data-price="20" data-unit="小時">
+        <span class="number">06</span><div class="service-body"><h3>周圍空氣芬芳</h3><p class="price"><strong>每小時 20 元</strong></p><div class="controls"><label class="choose"><input class="service-check" type="checkbox"> 加入選購</label><label class="qty-wrap">時數 <input class="qty" type="number" min="1" step="1" value="1" inputmode="numeric"></label></div></div>
+      </article>
+      <article class="service" data-id="7" data-name="電話接聽" data-price="5" data-unit="通">
+        <span class="number">07</span><div class="service-body"><h3>電話接聽</h3><p class="price"><strong>每通 5 元</strong></p><div class="controls"><label class="choose"><input class="service-check" type="checkbox"> 加入選購</label><label class="qty-wrap">通數 <input class="qty" type="number" min="1" step="1" value="1" inputmode="numeric"></label></div></div>
+      </article>
+      <article class="service" data-id="8" data-name="文具租借" data-price="10" data-unit="項">
+        <span class="number">08</span><div class="service-body"><h3>文具租借</h3><p class="price"><strong>每項 10 元</strong></p><p class="description">每項文具均以一項計價</p><div class="controls"><label class="choose"><input class="service-check" type="checkbox"> 加入選購</label><label class="qty-wrap">項數 <input class="qty" type="number" min="1" step="1" value="1" inputmode="numeric"></label></div></div>
+      </article>
+      <article class="service" data-id="9" data-name="廢紙提供" data-price="10" data-unit="份">
+        <span class="number">09</span><div class="service-body"><h3>廢紙提供</h3><p class="price"><strong>10 張 10 元</strong>｜<strong>20 張 15 元</strong></p><div class="controls"><label class="choose"><input class="service-check" type="checkbox"> 加入選購</label><label class="option-wrap">規格 <select class="option"><option value="10" data-label="10 張" data-sheets="10">10 張｜10 元</option><option value="15" data-label="20 張" data-sheets="20">20 張｜15 元</option></select></label><label class="qty-wrap">份數 <input class="qty" type="number" min="1" step="1" value="1" inputmode="numeric"></label></div></div>
+      </article>
+      <article class="service" data-id="10" data-name="顧問諮詢" data-price="100" data-unit="個 10 分鐘">
+        <span class="number">10</span><div class="service-body"><h3>顧問諮詢</h3><p class="price"><strong>每 10 分鐘 100 元</strong></p><div class="controls"><label class="choose"><input class="service-check" type="checkbox"> 加入選購</label><label class="qty-wrap">單位數 <input class="qty" type="number" min="1" step="1" value="1" inputmode="numeric"></label></div><p class="description">每增加 1 單位，即增加 10 分鐘</p></div>
+      </article>
     </div>
-  </div>
+  </section>
 
-  <script>
-    // 紀錄選購狀態
-    const cart = {};
+  <section class="promo" aria-labelledby="promo-title">
+    <p class="eyebrow">💚 A LITTLE THANK-YOU FOR COLLEAGUES 💚</p><h2 id="promo-title">敦親睦鄰・好同事優惠</h2>
+    <div class="deals">
+      <div class="deal"><p class="deal-title">🌷 好同事特別優惠</p><p class="deal-copy">勾選下方折扣，服務價格 <span class="discount">9 折</span></p></div>
+      <div class="deal"><p class="deal-title">🎁 選購 3 項以上不同服務</p><p class="deal-copy">再享 <span class="discount">9 折</span></p></div>
+    </div>
+    <p class="fineprint">本頁以「先打 9 折，再於符合 3 項服務時折上再 9 折」試算。3 項以不同的付費服務類別計算；免費的鄰座打單服務不列入門檻。最終金額仍請雙方確認。</p>
+  </section>
 
-    // 點擊服務卡片切換選購 (針對 fixed 或 market 類別)
-    document.querySelectorAll('.service').forEach(card => {
-      const type = card.dataset.type;
-      if (type === 'fixed' || type === 'market') {
-        card.addEventListener('click', () => {
-          const id = card.dataset.id;
-          if (cart[id]) {
-            delete cart[id];
-            card.classList.remove('selected');
-            card.querySelector('.select-tag').textContent = type === 'market' ? '點擊選購' : '點擊選購 ($9)';
-          } else {
-            cart[id] = {
-              id: id,
-              name: card.dataset.name,
-              type: type,
-              price: parseFloat(card.dataset.price) || 0,
-              qty: 1
-            };
-            card.classList.add('selected');
-            card.querySelector('.select-tag').textContent = '已選購 ✓';
-          }
-          updateCart();
-        });
-      }
+  <section class="order-panel" aria-labelledby="order-title">
+    <p class="eyebrow">🧺 YOUR LITTLE ORDER LIST</p><h2 id="order-title">🛍️ 我的選購清單</h2><p class="order-intro">勾選想要的服務、調整數量，就能即時查看金額並整理訂購訊息。</p>
+    <label class="choose"><input type="checkbox" id="colleagueDiscount" checked> 套用好同事優惠 9 折</label>
+    <div class="cart-summary" aria-live="polite">
+      <h3>這次想選購</h3><ul class="cart-list" id="cartList"><li>尚未選擇服務，回上方勾選就可以囉！</li></ul>
+      <div class="summary-row"><span>原價小計</span><strong id="subtotal">NT$ 0</strong></div>
+      <div class="summary-row"><span>好同事優惠</span><strong id="colleagueSaving">− NT$ 0</strong></div>
+      <div class="summary-row"><span>3 項服務加碼優惠</span><strong id="bundleSaving">− NT$ 0</strong></div>
+      <div class="summary-row total"><span>優惠後試算金額</span><strong id="finalTotal">NT$ 0</strong></div>
+      <p class="summary-note" id="discountNote">時價已更新為固定單價。選滿 3 項不同的付費服務，即自動計入加碼優惠。</p>
+    </div>
+    <div class="order-grid" style="margin-top:15px">
+      <label class="field">怎麼稱呼你？（選填）<input id="buyerName" type="text" placeholder="例如：小育"></label>
+      <label class="field">聯絡方式（選填）<input id="buyerContact" type="text" placeholder="例如：LINE 名稱或分機"></label>
+      <label class="field full">補充需求（選填）<textarea id="buyerNote" placeholder="例如：需要服務的日期、印製內容或其他需求"></textarea></label>
+    </div>
+    <div class="order-actions"><button class="button primary" id="makeOrder" type="button">產生訂購訊息</button><button class="button secondary" id="copyOrder" type="button">複製訂購訊息</button><button class="button secondary" id="clearOrder" type="button">清空選擇</button></div>
+    <label class="field" style="margin-top:14px">訂購訊息預覽<textarea id="orderPreview" style="min-height:180px" placeholder="按下「產生訂購訊息」後，訂購內容會顯示在這裡。"></textarea></label>
+    <p class="status" id="orderStatus" role="status"></p>
+    <p class="legal-note">此頁會在你的瀏覽器內試算並整理訊息，不會自動傳送訂單。複製後可貼到 LINE 或其他聯絡工具，再由服務提供者確認訂單與金額。</p>
+  </section>
+  <footer>小育子愉快工作生活館　<span class="heart">♡</span>　有需要，歡迎洽詢選購！</footer>
+</main>
+<script>
+(()=>{
+  const cards=[...document.querySelectorAll('.service')];
+  const $=id=>document.getElementById(id);
+  const money=n=>'NT$ '+Math.round(n).toLocaleString('zh-TW');
+  const cleanQty=el=>Math.max(1,Math.floor(Number(el.value)||1));
+  function getItems(){
+    return cards.filter(c=>c.querySelector('.service-check').checked).map(c=>{
+      const qtyEl=c.querySelector('.qty');const qty=cleanQty(qtyEl);qtyEl.value=qty;
+      const option=c.querySelector('.option');const selected=option?.selectedOptions[0];
+      const neighborFree=!!c.querySelector('.neighbor-free')?.checked;
+      const unitPrice=neighborFree?0:Number(selected?.value ?? c.dataset.price);
+      const isPack=!!option;
+      const unitLabel=selected?.dataset.label || c.dataset.unit;
+      const lineTotal=unitPrice*qty;
+      return {card:c,name:c.dataset.name,qty,unitPrice,lineTotal,unitLabel,neighborFree,isPack,idx:Number(c.dataset.id)};
     });
-
-    function updateQty(id, change) {
-      const input = document.getElementById(`qty-${id}`);
-      let current = parseInt(input.value) || 0;
-      current = Math.max(0, current + change);
-      input.value = current;
-      setQty(id, current);
-    }
-
-    function setQty(id, val) {
-      val = parseInt(val) || 0;
-      const card = document.querySelector(`[data-id="${id}"]`);
-      const tag = document.getElementById(`tag-${id}`);
-      const display10 = document.getElementById(`qty-display-10`);
-      if(id == 10 && display10) display10.textContent = `${val} 份`;
-
-      if (val > 0) {
-        let unitPrice = id == 10 ? 80 : 0.8;
-        cart[id] = {
-          id: id,
-          name: card.dataset.name,
-          type: 'unit',
-          unitPrice: unitPrice,
-          qty: val,
-          unitName: card.dataset.unitName || '張'
-        };
-        card.classList.add('selected');
-        tag.textContent = `已選 ${val} ${card.dataset.unitName || '份'}`;
-      } else {
-        delete cart[id];
-        card.classList.remove('selected');
-        tag.textContent = '未選購';
-      }
-      updateCart();
-    }
-
-    function toggleColleagueDiscount() {
-      const checkbox = document.getElementById('colleagueCheck');
-      checkbox.checked = !checkbox.checked;
-      updateCart();
-    }
-
-    function updateCart() {
-      let count = 0;
-      let rawTotal = 0;
-      let hasMarketPrice = false;
-
-      for (let id in cart) {
-        count++;
-        let item = cart[id];
-        if (item.type === 'unit') {
-          rawTotal += item.unitPrice * item.qty;
-        } else if (item.type === 'fixed') {
-          rawTotal += item.price;
-        } else if (item.type === 'market') {
-          hasMarketPrice = true;
-        }
-      }
-
-      // 計算折扣
-      let isColleague = document.getElementById('colleagueCheck').checked;
-      let discountCount = count >= 3 ? 1 : 0;
-      if (isColleague) discountCount++;
-
-      let multiplier = 1.0;
-      if (discountCount === 1) multiplier = 0.9;
-      if (discountCount >= 2) multiplier = 0.81; // 9折 * 9折 = 8.1折
-
-      let finalTotal = Math.round(rawTotal * multiplier);
-
-      // 更新優惠徽章
-      const badge = document.getElementById('autoDiscountBadge');
-      if (count >= 3) {
-        badge.textContent = "已享 9 折優惠！";
-        badge.style.color = "#d96f78";
-      } else {
-        badge.textContent = `再選 ${3 - count} 項享 9 折`;
-        badge.style.color = "var(--muted)";
-      }
-
-      // 更新 UI 底部霸條
-      document.getElementById('cartCount').textContent = count;
-      document.getElementById('cartTotal').textContent = hasMarketPrice ? `NT$ ${finalTotal} + 時價報價` : `NT$ ${finalTotal}`;
-
-      const cartBar = document.getElementById('cartBar');
-      if (count > 0 || hasMarketPrice) {
-        cartBar.classList.add('active');
-      } else {
-        cartBar.classList.remove('active');
-      }
-    }
-
-    function openCheckoutModal() {
-      const listEl = document.getElementById('summaryList');
-      listEl.innerHTML = '';
-      let rawTotal = 0;
-      let count = 0;
-      let hasMarket = false;
-
-      for (let id in cart) {
-        count++;
-        let item = cart[id];
-        let itemTotal = 0;
-        let desc = '';
-        if (item.type === 'unit') {
-          itemTotal = item.unitPrice * item.qty;
-          desc = `${item.qty} ${item.unitName} (NT$ ${itemTotal})`;
-          rawTotal += itemTotal;
-        } else if (item.type === 'fixed') {
-          itemTotal = item.price;
-          desc = `固定品項 (NT$ ${itemTotal})`;
-          rawTotal += itemTotal;
-        } else if (item.type === 'market') {
-          hasMarket = true;
-          desc = `依實際需求報價`;
-        }
-
-        const li = document.createElement('li');
-        li.className = 'summary-item';
-        li.innerHTML = `<span><strong>${item.name}</strong> x ${desc}</span>`;
-        listEl.appendChild(li);
-      }
-
-      if (count === 0 && !hasMarket) {
-        listEl.innerHTML = `<li style="text-align:center; color:var(--muted);">尚未選擇任何服務項目</li>`;
-      }
-
-      let isColleague = document.getElementById('colleagueCheck').checked;
-      let discountCount = count >= 3 ? 1 : 0;
-      if (isColleague) discountCount++;
-      let multiplier = discountCount === 1 ? 0.9 : (discountCount >= 2 ? 0.81 : 1.0);
-      let finalTotal = Math.round(rawTotal * multiplier);
-
-      document.getElementById('modalTotal').textContent = hasMarket ? `NT$ ${finalTotal} + 時價報價` : `NT$ ${finalTotal}`;
-      document.getElementById('checkoutModal').classList.add('open');
-    }
-
-    function closeCheckoutModal() {
-      document.getElementById('checkoutModal').classList.remove('open');
-    }
-
-    function submitOrder() {
-      const name = document.getElementById('userName').value.trim();
-      const note = document.getElementById('userNote').value.trim();
-
-      if (!name) {
-        alert('請填寫您的稱呼或分機，以便小育子聯繫您唷！');
-        document.getElementById('userName').focus();
-        return;
-      }
-
-      // 組合傳送文字
-      let text = `【小育子愉快工作生活館・預約單】\n`;
-      text += `👤 預約人：${name}\n`;
-      text += `📝 服務明細：\n`;
-      for (let id in cart) {
-        let item = cart[id];
-        if (item.type === 'unit') {
-          text += `- ${item.name} x ${item.qty} ${item.unitName}\n`;
-        } else {
-          text += `- ${item.name}\n`;
-        }
-      }
-      let isColleague = document.getElementById('colleagueCheck').checked;
-      if (isColleague) text += `💡 已套用好同事 9 折優惠\n`;
-      if (note) text += `💬 備註：${note}\n`;
-      text += `--------------------------\n`;
-      text += `總金額：${document.getElementById('modalTotal').textContent}\n`;
-      text += `再麻煩小育子協助囉！謝謝 ♡`;
-
-      // 複製到剪貼簿
-      navigator.clipboard.writeText(text).then(() => {
-        alert('✨ 訂單內容已成功複製到剪貼簿！\n\n您可以直接貼上至 LINE 或聊天室傳送給小育子唷！');
-        closeCheckoutModal();
-      }).catch(err => {
-        alert('複製失敗，請手動複製畫面資訊。');
-      });
-    }
-  </script>
+  }
+  function calculate(){
+    const items=getItems();const subtotal=items.reduce((s,x)=>s+x.lineTotal,0);
+    const paidCategories=new Set(items.filter(x=>x.lineTotal>0).map(x=>x.idx));
+    const colleague=$('colleagueDiscount').checked;
+    const eligibleBundle=paidCategories.size>=3;
+    const afterColleague=colleague?subtotal*.9:subtotal;
+    const final=eligibleBundle?afterColleague*.9:afterColleague;
+    const colleagueSaving=subtotal-afterColleague;
+    const bundleSaving=afterColleague-final;
+    const list=$('cartList');list.innerHTML='';
+    if(!items.length){const li=document.createElement('li');li.textContent='尚未選擇服務，回上方勾選就可以囉！';list.append(li);}
+    items.forEach(x=>{const li=document.createElement('li');let detail=`${x.name}`;if(x.isPack)detail+=`（${x.unitLabel} × ${x.qty} 份）`;else detail+=`（${x.qty} ${x.card.dataset.unit}）`;if(x.neighborFree)detail+='（鄰座免費）';li.textContent=`${detail}｜${money(x.lineTotal)}`;list.append(li);});
+    $('subtotal').textContent=money(subtotal);$('colleagueSaving').textContent='− '+money(colleagueSaving);$('bundleSaving').textContent='− '+money(bundleSaving);$('finalTotal').textContent=money(final);
+    $('discountNote').textContent=!items.length?'勾選服務後會自動計算；選滿 3 項不同的付費服務，可再享 9 折。':`已選 ${items.length} 項服務，其中 ${paidCategories.size} 項不同的付費服務類別。${colleague?'已套用好同事 9 折。':'尚未套用好同事折扣。'}${eligibleBundle?'已符合 3 項服務加碼 9 折。':'再選 '+Math.max(0,3-paidCategories.size)+' 項不同的付費服務類別，即可符合加碼折扣。'}金額四捨五入至整數元。`;
+    cards.forEach(c=>c.classList.toggle('selected',!!c.querySelector('.service-check').checked));
+    return {items,subtotal,colleagueSaving,bundleSaving,final,eligibleBundle,colleague};
+  }
+  function makeMessage(){
+    const calc=calculate();if(!calc.items.length){$('orderStatus').textContent='請先勾選至少一項服務喔！';return '';}
+    const name=$('buyerName').value.trim(),contact=$('buyerContact').value.trim(),note=$('buyerNote').value.trim();
+    const lines=['【小育子愉快工作生活館｜訂購需求】'];
+    if(name)lines.push('稱呼：'+name);if(contact)lines.push('聯絡方式：'+contact);
+    lines.push('','選購項目：');
+    calc.items.forEach((x,i)=>{let desc=`${i+1}. ${x.name}`;if(x.isPack)desc+=`（${x.unitLabel} × ${x.qty} 份）`;else desc+=`（${x.qty} ${x.card.dataset.unit}）`;if(x.neighborFree)desc+='（鄰座免費）';desc+=`｜${money(x.lineTotal)}`;lines.push(desc);});
+    lines.push('','原價小計：'+money(calc.subtotal),'好同事優惠：'+(calc.colleague?'− '+money(calc.colleagueSaving):'未套用'),'3 項服務加碼優惠：'+(calc.eligibleBundle?'− '+money(calc.bundleSaving):'未達門檻'),'優惠後試算金額：'+money(calc.final));
+    if(note)lines.push('補充需求：'+note);
+    lines.push('','以上為訂購需求，請協助確認服務內容與金額，謝謝！');
+    $('orderPreview').value=lines.join('\n');$('orderStatus').textContent='訂購訊息已整理好，可以複製後傳送囉！';return $('orderPreview').value;
+  }
+  cards.forEach(c=>{c.querySelector('.service-check').addEventListener('change',calculate);c.querySelector('.qty').addEventListener('change',calculate);c.querySelector('.qty').addEventListener('input',calculate);c.querySelector('.option')?.addEventListener('change',calculate);c.querySelector('.neighbor-free')?.addEventListener('change',()=>{const cb=c.querySelector('.service-check');if(c.querySelector('.neighbor-free').checked)cb.checked=true;calculate();});});
+  $('colleagueDiscount').addEventListener('change',calculate);
+  $('makeOrder').addEventListener('click',makeMessage);
+  $('copyOrder').addEventListener('click',async()=>{const text=$('orderPreview').value.trim()||makeMessage();if(!text)return;try{await navigator.clipboard.writeText(text);$('orderStatus').textContent='已複製訂購訊息！可以貼到 LINE 或其他聯絡工具。';}catch(e){$('orderPreview').focus();$('orderPreview').select();$('orderStatus').textContent='瀏覽器未允許自動複製，已選取訊息，請手動複製。';}});
+  $('clearOrder').addEventListener('click',()=>{cards.forEach(c=>{c.querySelector('.service-check').checked=false;const q=c.querySelector('.qty');q.value=1;const nf=c.querySelector('.neighbor-free');if(nf)nf.checked=false;const op=c.querySelector('.option');if(op)op.selectedIndex=0;});$('colleagueDiscount').checked=true;['buyerName','buyerContact','buyerNote','orderPreview'].forEach(id=>$(id).value='');$('orderStatus').textContent='已清空選購清單。';calculate();});
+  calculate();
+})();
+</script>
 </body>
 </html>
